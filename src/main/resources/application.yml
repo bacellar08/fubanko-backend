@@ -12,3 +12,9 @@ spring:
       ddl-auto: update
     show-sql: true
     open-in-view: false
+
+
+jwt:
+  security:
+    private-key: classpath:app.key
+    public-key: classpath:app.pub
