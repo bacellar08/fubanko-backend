@@ -4,7 +4,6 @@ import io.github.fubanko.fubanko.service.AuthService;
 import io.github.fubanko.fubanko.service.dto.RegisterRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +20,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody RegisterRequest registerRequest) throws Exception {
+    public ResponseEntity<String> login(@RequestBody RegisterRequest registerRequest) throws Exception {
 
-        return authService.authenticate(registerRequest);
+        var token = authService.authenticate(registerRequest);
+
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/register")
