@@ -1,5 +1,6 @@
 package io.github.fubanko.fubanko.service;
 
+import io.github.fubanko.fubanko.model.User;
 import io.github.fubanko.fubanko.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,8 +17,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return userRepository.findByUsername(username);
+        var user = userRepository.findByUsername(username);
+
+
+        return user.get();
     }
 }
