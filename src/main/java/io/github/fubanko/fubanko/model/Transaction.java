@@ -16,6 +16,7 @@ public class Transaction {
     private LocalDateTime dateTime = LocalDateTime.now();
     private BigDecimal amount;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
