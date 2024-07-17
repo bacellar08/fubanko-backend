@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,8 +15,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
+    private BigDecimal balance = BigDecimal.ZERO;
 
     public User() {
     }
@@ -69,5 +73,15 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public BigDecimal getBalance() {
+        return balance;
+    }
 
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public boolean isBalanceEqualOrGreaterThan(BigDecimal amount) {
+        return this.balance.doubleValue() >= amount.doubleValue();
+    }
 }
