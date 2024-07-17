@@ -6,7 +6,6 @@ import io.github.fubanko.fubanko.service.dto.RegisterRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class AuthService {
     }
 
 
-    public String authenticate(RegisterRequest registerRequest) throws Exception {
+    public String authenticate(RegisterRequest registerRequest) {
 
         try {
 
@@ -36,9 +35,7 @@ public class AuthService {
 
             var authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-            var token = jwtService.generateToken(authentication);
-
-            return token;
+            return jwtService.generateToken(authentication);
 
         } catch (Exception e) {
             throw new BadCredentialsException("Invalid username or password", e);
