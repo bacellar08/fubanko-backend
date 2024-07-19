@@ -1,5 +1,6 @@
 package io.github.fubanko.fubanko.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -18,11 +19,12 @@ public class Transaction {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User payer;
-    @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.EAGER)
     private User recipient;
+
+    private String message;
 
     public Transaction() {
     }
@@ -65,5 +67,13 @@ public class Transaction {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

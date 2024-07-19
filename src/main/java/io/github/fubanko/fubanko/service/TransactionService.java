@@ -12,6 +12,8 @@ import jakarta.transaction.TransactionalException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TransactionService {
 
@@ -63,6 +65,18 @@ public class TransactionService {
         transactionRepository.save(transaction);
 
         return transaction;
+    }
+
+    public List<Transaction> findUserTransactions(String username) {
+
+        var user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        return transactionRepository.findAllByPayerIdOrRecipientId(user.getId(), user.getId());
+    }
+
+    public List<Transaction> findAll() {
+        return transactionRepository.findAll();
     }
 
 
