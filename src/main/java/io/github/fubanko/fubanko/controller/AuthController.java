@@ -1,5 +1,6 @@
 package io.github.fubanko.fubanko.controller;
 
+import io.github.fubanko.fubanko.controller.dto.TokenDTO;
 import io.github.fubanko.fubanko.service.AuthService;
 import io.github.fubanko.fubanko.service.dto.RegisterRequest;
 import org.springframework.http.HttpStatus;
@@ -20,11 +21,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody RegisterRequest registerRequest) throws Exception {
+    public ResponseEntity<TokenDTO> login(@RequestBody RegisterRequest registerRequest) throws Exception {
 
         var token = authService.authenticate(registerRequest);
 
-        return ResponseEntity.ok(token);
+        var response = new TokenDTO(token);
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
