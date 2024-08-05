@@ -52,6 +52,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/auth/**").permitAll()
                         .requestMatchers("/api").authenticated()
+                        .requestMatchers("/users/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
