@@ -38,7 +38,7 @@ public class TransactionService {
                 .orElseThrow(() -> new UsernameNotFoundException("Payee was not found"));
 
         if (payer.getUsername().equals(payee.getUsername())) {
-            throw new IllegalArgumentException("Payer and Payee are the same");
+            throw new IllegalArgumentException("Payer and Payee are the same.");
         }
 
         if (transactionRequest.amount().doubleValue() <= 0) {
