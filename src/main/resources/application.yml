@@ -24,5 +24,4 @@ spring:
 
 jwt:
   security:
-    private-key: classpath:app.key
-    public-key: classpath:app.pub
+    secret-key: ${SECRET_KEY}
