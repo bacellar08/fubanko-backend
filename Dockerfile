@@ -19,20 +19,15 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 
-RUN mkdir -p /app/src/main/resources && \
-    echo "$PRIVATE_KEY" > /app/src/main/resources/app.key && \
-    echo "$PUBLIC_KEY" > /app/src/main/resources/app.pub
-
-
 ARG DB_URL
 ARG DB_USER
 ARG DB_PWD
-ARG SECURITY_KEY
+ARG SECRET_KEY
 
 ENV DB_URL=${DB_URL}
 ENV DB_USER=${DB_USER}
 ENV DB_PWD=${DB_PWD}
-ENV SECURITY_KEY=${SECURITY_KEY}
+ENV SECRET_KEY=${SECRET_KEY}
 
 EXPOSE 8080
 
