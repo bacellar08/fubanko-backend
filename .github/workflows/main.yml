@@ -25,9 +25,9 @@ jobs:
             bacellar08/fubanko-backend:${{ github.run_number }}
             bacellar08/fubanko-backend:latest
           build-args: |
-            DB_URL=${{ secrets.DATABASE_URL }}
-            DB_USER=${{ secrets.DATABASE_USERNAME }}
-            DB_PWD=${{ secrets.DATABASE_PASSWORD }}
+            DB_URL=${{ secrets.DB_URL }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PWD=${{ secrets.DB_PWD }}
             PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}
             PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}
   # CD:
