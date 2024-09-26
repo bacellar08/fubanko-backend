@@ -13,6 +13,12 @@ spring:
     show-sql: true
     open-in-view: false
 
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5434/fubanko-db
+    user: admin
+    password: 123
+
 
 jwt:
   security:
