@@ -1,17 +1,25 @@
 spring:
   application:
     name: fubanko
+#  profiles:
+#    active: ${core.spring.profiles.active:dev}
 
   datasource:
-    url: jdbc:postgresql://localhost:5434/fubanko-db
-    username: admin
-    password: 123
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PWD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     open-in-view: false
+
+  flyway:
+    enabled: true
+    url: ${DB_URL}
+    user: ${DB_USER}
+    password: ${DB_PWD}
 
 
 jwt:
