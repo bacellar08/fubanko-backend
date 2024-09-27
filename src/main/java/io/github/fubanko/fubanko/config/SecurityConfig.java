@@ -45,6 +45,7 @@ public class SecurityConfig {
                         .requestMatchers("/users/**").authenticated()
                         .anyRequest().authenticated()
                 )
+
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

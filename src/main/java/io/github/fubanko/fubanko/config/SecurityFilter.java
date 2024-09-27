@@ -29,23 +29,36 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-            var token = this.recoverToken(request);
-            if (token != null) {
-                var subject = jwtService.validateToken(token);
-                UserDetails user = userRepository.findByUsername(subject).orElseThrow(() -> new EntityNotFoundException(subject));
 
-                var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = this.recoverToken(request);
+
+            if (token != null) {
+                String subject = jwtService.validateToken(token);
+
+                if (subject != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+                    UserDetails user = userRepository.findByUsername(subject)
+                            .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
+
+
             filterChain.doFilter(request, response);
     }
 
     private String recoverToken(HttpServletRequest request) {
 
-        var authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) return null;
+        String authHeader = request.getHeader("Authorization");
 
-        return authHeader.replace("Bearer ", "");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7);
+        }
+        return null;
 }
 
 }

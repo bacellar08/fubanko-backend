@@ -7,6 +7,7 @@ import io.github.fubanko.fubanko.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,11 +35,12 @@ public class UserController {
     }
 
     @GetMapping("/userinfo")
-    public ResponseEntity<UserInfoResponse> getUserInfo(@AuthenticationPrincipal Jwt token) {
+    public ResponseEntity<UserInfoResponse> getUserInfo() {
 
-        var username = new UserInfoResponse(token.getSubject());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserInfoResponse userInfo = new UserInfoResponse(username);
 
-        return ResponseEntity.status(HttpStatus.OK).body(username);
+        return ResponseEntity.status(HttpStatus.OK).body(userInfo);
 
 
     }
