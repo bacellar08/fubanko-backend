@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 @Entity
@@ -20,7 +21,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private LocalDateTime dateTime = LocalDateTime.now();
+    private LocalDateTime dateTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
