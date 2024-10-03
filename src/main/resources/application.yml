@@ -1,8 +1,8 @@
 spring:
   application:
     name: fubanko
-#  profiles:
-#    active: ${core.spring.profiles.active:dev}
+  profiles:
+    active: ${core.spring.profiles.active:dev}
 
   datasource:
     url: ${DB_URL}
@@ -20,6 +20,8 @@ spring:
     url: ${DB_URL}
     user: ${DB_USER}
     password: ${DB_PWD}
+
+
 
 
 jwt:
