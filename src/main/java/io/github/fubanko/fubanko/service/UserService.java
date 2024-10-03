@@ -1,7 +1,6 @@
 package io.github.fubanko.fubanko.service;
 
-import io.github.fubanko.fubanko.exception.InsufficientBalanceException;
-import io.github.fubanko.fubanko.model.User;
+import io.github.fubanko.fubanko.domain.User;
 import io.github.fubanko.fubanko.repository.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

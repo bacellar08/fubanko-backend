@@ -1,14 +1,13 @@
 package io.github.fubanko.fubanko.controller;
 
-import io.github.fubanko.fubanko.model.Transaction;
-import io.github.fubanko.fubanko.model.dto.TransactionDTO;
-import io.github.fubanko.fubanko.model.dto.TransactionRequest;
+import io.github.fubanko.fubanko.domain.Transaction;
+import io.github.fubanko.fubanko.domain.dto.TransactionDTO;
+import io.github.fubanko.fubanko.domain.dto.TransactionRequest;
 import io.github.fubanko.fubanko.service.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping

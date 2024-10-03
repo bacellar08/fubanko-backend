@@ -1,7 +1,7 @@
-package io.github.fubanko.fubanko.model.dto;
+package io.github.fubanko.fubanko.domain.dto;
 
-import io.github.fubanko.fubanko.model.Status;
-import io.github.fubanko.fubanko.model.Transaction;
+import io.github.fubanko.fubanko.domain.Status;
+import io.github.fubanko.fubanko.domain.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package io.github.fubanko.fubanko.model;
+package io.github.fubanko.fubanko.domain;
 
 public enum Status {
 

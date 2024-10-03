@@ -2,13 +2,12 @@ package io.github.fubanko.fubanko.service;
 
 import io.github.fubanko.fubanko.exception.InsufficientBalanceException;
 import io.github.fubanko.fubanko.exception.InvalidAmountException;
-import io.github.fubanko.fubanko.model.Status;
-import io.github.fubanko.fubanko.model.Transaction;
-import io.github.fubanko.fubanko.model.dto.TransactionRequest;
+import io.github.fubanko.fubanko.domain.Status;
+import io.github.fubanko.fubanko.domain.Transaction;
+import io.github.fubanko.fubanko.domain.dto.TransactionRequest;
 import io.github.fubanko.fubanko.repository.TransactionRepository;
 import io.github.fubanko.fubanko.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import jakarta.transaction.TransactionalException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -49,22 +48,18 @@ public class TransactionService {
             throw new InsufficientBalanceException();
         }
 
-        Transaction transaction = new Transaction();
-
-        transaction.setAmount(transactionRequest.amount());
-        transaction.setPayer(payer);
-        transaction.setRecipient(payee);
-        transaction.setStatus(Status.PENDING);
-
-        transactionRepository.save(transaction);
+        Transaction transaction = Transaction.builder()
+                .amount(transactionRequest.amount())
+                .payer(payer)
+                .recipient(payee)
+                .status(Status.PENDING)
+                .build();
 
         userService.debit(payer.getUsername(), transactionRequest.amount());
         userService.credit(payee.getUsername(), transactionRequest.amount());
-
         transaction.setStatus(Status.SUCCESS);
-        transactionRepository.save(transaction);
 
-        return transaction;
+        return transactionRepository.save(transaction);
     }
 
     public List<Transaction> findUserTransactions(String username) {

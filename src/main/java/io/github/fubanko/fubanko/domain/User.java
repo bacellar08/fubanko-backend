@@ -1,6 +1,8 @@
-package io.github.fubanko.fubanko.model;
+package io.github.fubanko.fubanko.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_users")
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id

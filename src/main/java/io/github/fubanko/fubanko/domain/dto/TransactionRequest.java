@@ -1,4 +1,4 @@
-package io.github.fubanko.fubanko.model.dto;
+package io.github.fubanko.fubanko.domain.dto;
 
 import java.math.BigDecimal;
 

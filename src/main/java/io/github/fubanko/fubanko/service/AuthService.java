@@ -1,6 +1,6 @@
 package io.github.fubanko.fubanko.service;
 
-import io.github.fubanko.fubanko.model.User;
+import io.github.fubanko.fubanko.domain.User;
 import io.github.fubanko.fubanko.repository.UserRepository;
 import io.github.fubanko.fubanko.service.dto.RegisterRequest;
 import org.springframework.security.authentication.AuthenticationManager;
