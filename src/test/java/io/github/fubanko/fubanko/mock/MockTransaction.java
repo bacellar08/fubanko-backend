@@ -7,6 +7,7 @@ import io.github.fubanko.fubanko.domain.dto.TransactionRequest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,6 @@ public class MockTransaction {
                 .recipient(mockUser(2))
                 .status(Status.SUCCESS)
                 .amount(BigDecimal.valueOf(5))
-                .dateTime(LocalDateTime.now())
                 .message("Transaction test")
                 .build();
     }
