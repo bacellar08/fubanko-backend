@@ -1,6 +1,6 @@
 package io.github.fubanko.fubanko.repository;
 
-import io.github.fubanko.fubanko.model.Transaction;
+import io.github.fubanko.fubanko.domain.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -2,8 +2,8 @@ package io.github.fubanko.fubanko.controller.dto;
 
 
 
-import io.github.fubanko.fubanko.model.User;
-import io.github.fubanko.fubanko.model.dto.TransactionDTO;
+import io.github.fubanko.fubanko.domain.User;
+import io.github.fubanko.fubanko.domain.dto.TransactionDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
